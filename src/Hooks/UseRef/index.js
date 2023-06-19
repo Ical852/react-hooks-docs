@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
-const UseStatePage = () => {
+const UseRefPage = () => {
   const [name, setName] = useState("");
   const [job, setJob] = useState("");
   const [salary, setSalary] = useState(0);
 
+  const nameRef = useRef();
+  const jobRef = useRef();
+  const salaryRef = useRef();
+
   return (
     <div className="mt-3">
-      <h5 className="mb-3">Use State</h5>
+      <h5 className="mb-3">Use Ref</h5>
       <form>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
             Name
           </label>
           <input
+            ref={nameRef}
             type="text"
             class="form-control"
             id="exampleInputEmail1"
@@ -27,6 +32,7 @@ const UseStatePage = () => {
             Job
           </label>
           <input
+            ref={jobRef}
             type="text"
             class="form-control"
             id="exampleInputPassword1"
@@ -39,6 +45,7 @@ const UseStatePage = () => {
             Salary
           </label>
           <input
+            ref={salaryRef}
             type="number"
             class="form-control"
             id="exampleInputPassword1"
@@ -49,11 +56,23 @@ const UseStatePage = () => {
         <button
           type="button"
           class="btn btn-primary"
-          onClick={() => {
-            console.log(`name : ${name}, job: ${job}, salary: $${salary}`);
-          }}
+          onClick={() => nameRef.current.focus()}
         >
-          Submit
+          Focus Name
+        </button>
+        <button
+          type="button"
+          class="btn btn-success mx-2"
+          onClick={() => jobRef.current.focus()}
+        >
+          Focus Job
+        </button>
+        <button
+          type="button"
+          class="btn btn-info"
+          onClick={() => salaryRef.current.focus()}
+        >
+          Focus Salary
         </button>
       </form>
 
@@ -66,4 +85,4 @@ const UseStatePage = () => {
   );
 };
 
-export default UseStatePage;
+export default UseRefPage;

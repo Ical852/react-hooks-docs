@@ -1,15 +1,15 @@
-import React, { useSyncExternalStore } from "react";
-import { profileStore } from "./profileStore";
+import React, { useReducer } from "react";
 
-const UseSyncExternalStorePage = () => {
-  const profile = useSyncExternalStore(
-    profileStore.subscribe,
-    profileStore.getSnapshot
-  );
+import { reducer } from "./reducer";
+import { initialState } from "./state";
+import { setJob, setName, setSalary } from "./actions";
+
+const UseReducerPage = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div className="m-5">
-      <h5 className="mb-3">Use Sync External Store</h5>
+    <div className="mt-3">
+      <h5 className="mb-3">Use Reducer</h5>
       <form>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
@@ -20,8 +20,8 @@ const UseSyncExternalStorePage = () => {
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            value={profile.name}
-            onChange={(e) => profileStore.changeName(e.target.value)}
+            value={state.name}
+            onChange={(e) => dispatch(setName(e.target.value))}
           />
         </div>
         <div class="mb-3">
@@ -32,8 +32,8 @@ const UseSyncExternalStorePage = () => {
             type="text"
             class="form-control"
             id="exampleInputPassword1"
-            value={profile.job}
-            onChange={(e) => profileStore.changeJob(e.target.value)}
+            value={state.job}
+            onChange={(e) => dispatch(setJob(e.target.value))}
           />
         </div>
         <div class="mb-3">
@@ -41,18 +41,20 @@ const UseSyncExternalStorePage = () => {
             Salary
           </label>
           <input
-            type="text"
+            type="number"
             class="form-control"
             id="exampleInputPassword1"
-            value={profile.salary}
-            onChange={(e) => profileStore.changeSalary(e.target.value)}
+            value={state.salary}
+            onChange={(e) => dispatch(setSalary(e.target.value))}
           />
         </div>
         <button
           type="button"
           class="btn btn-primary"
           onClick={() => {
-            console.log(profile);
+            console.log(
+              `name : ${state.name}, job: ${state.job}, salary: $${state.salary}`
+            );
           }}
         >
           Submit
@@ -60,12 +62,12 @@ const UseSyncExternalStorePage = () => {
       </form>
 
       <div className="mt-5">
-        <div>Full Name : {profile.name}</div>
-        <div>Job : {profile.job}</div>
-        <div>Salary : ${profile.salary}</div>
+        <div>Full Name : {state.name}</div>
+        <div>Job : {state.job}</div>
+        <div>Salary : ${state.salary}</div>
       </div>
     </div>
   );
 };
 
-export default UseSyncExternalStorePage;
+export default UseReducerPage;

@@ -1,15 +1,17 @@
-import React, { useSyncExternalStore } from "react";
-import { profileStore } from "./profileStore";
+import React, { useDebugValue, useState } from "react";
 
-const UseSyncExternalStorePage = () => {
-  const profile = useSyncExternalStore(
-    profileStore.subscribe,
-    profileStore.getSnapshot
-  );
+const UseDebugValuePage = () => {
+  const [name, setName] = useState("");
+  const [job, setJob] = useState("");
+  const [salary, setSalary] = useState(0);
+
+  useDebugValue(`name : ${name}`);
+  useDebugValue(`job : ${job}`);
+  useDebugValue(`salary : ${salary}`);
 
   return (
-    <div className="m-5">
-      <h5 className="mb-3">Use Sync External Store</h5>
+    <div className="mt-3">
+      <h5 className="mb-3">Use Debug Value</h5>
       <form>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
@@ -20,8 +22,8 @@ const UseSyncExternalStorePage = () => {
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            value={profile.name}
-            onChange={(e) => profileStore.changeName(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div class="mb-3">
@@ -32,8 +34,8 @@ const UseSyncExternalStorePage = () => {
             type="text"
             class="form-control"
             id="exampleInputPassword1"
-            value={profile.job}
-            onChange={(e) => profileStore.changeJob(e.target.value)}
+            value={job}
+            onChange={(e) => setJob(e.target.value)}
           />
         </div>
         <div class="mb-3">
@@ -41,18 +43,18 @@ const UseSyncExternalStorePage = () => {
             Salary
           </label>
           <input
-            type="text"
+            type="number"
             class="form-control"
             id="exampleInputPassword1"
-            value={profile.salary}
-            onChange={(e) => profileStore.changeSalary(e.target.value)}
+            value={salary}
+            onChange={(e) => setSalary(e.target.value)}
           />
         </div>
         <button
           type="button"
           class="btn btn-primary"
           onClick={() => {
-            console.log(profile);
+            console.log(`name : ${name}, job: ${job}, salary: $${salary}`);
           }}
         >
           Submit
@@ -60,12 +62,12 @@ const UseSyncExternalStorePage = () => {
       </form>
 
       <div className="mt-5">
-        <div>Full Name : {profile.name}</div>
-        <div>Job : {profile.job}</div>
-        <div>Salary : ${profile.salary}</div>
+        <div>Full Name : {name}</div>
+        <div>Job : {job}</div>
+        <div>Salary : ${salary}</div>
       </div>
     </div>
   );
 };
 
-export default UseSyncExternalStorePage;
+export default UseDebugValuePage;

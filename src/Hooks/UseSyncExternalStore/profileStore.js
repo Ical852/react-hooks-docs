@@ -1,4 +1,4 @@
-let profiles = { name: "Ical", job: "Software Engineer", salary: 5000 };
+let profiles = { name: "", job: "", salary: 0 };
 let listeners = [];
 
 export const profileStore = {

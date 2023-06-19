@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import {
   ButtonSubmit,
   Component1,
@@ -18,7 +18,8 @@ const UseContextPage = () => {
 
   return (
     <PageContext.Provider value={contextData}>
-      <div className="m-5">
+      <div className="mt-3">
+        <h5 className="mb-3">Use Context</h5>
         <form>
           <Component1 />
           <Component2 />
