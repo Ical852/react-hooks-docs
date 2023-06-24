@@ -9,6 +9,9 @@ import UseCallbackPage from "./UseCallback";
 import UseImperativeHandlePage from "./UseImperativeHandle";
 import UseLayoutEffectPage from "./UseLayoutEffect";
 import UseDebugValuePage from "./UseDebugValue";
+import UseDeferredValuePage from "./UseDeferredValue";
+import UseIdPage from "./UseId";
+import UseTransitionPage from "./UseTransition";
 
 export {
   UseSyncExternalStorePage,
@@ -22,4 +25,7 @@ export {
   UseImperativeHandlePage,
   UseLayoutEffectPage,
   UseDebugValuePage,
+  UseDeferredValuePage,
+  UseIdPage,
+  UseTransitionPage,
 };

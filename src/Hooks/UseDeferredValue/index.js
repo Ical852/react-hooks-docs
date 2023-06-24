@@ -1,15 +1,17 @@
-import React, { useSyncExternalStore } from "react";
-import { profileStore } from "./profileStore";
+import React, { useDeferredValue, useState } from "react";
 
-const UseSyncExternalStorePage = () => {
-  const profile = useSyncExternalStore(
-    profileStore.subscribe,
-    profileStore.getSnapshot
-  );
+const UseDeferredValuePage = () => {
+  const [name, setName] = useState("");
+  const [job, setJob] = useState("");
+  const [salary, setSalary] = useState(0);
+
+  const deferredName = useDeferredValue(name);
+  const deferredJob = useDeferredValue(job);
+  const deferredSalary = useDeferredValue(salary);
 
   return (
     <div className="mt-3">
-      <h5 className="mb-3">Use Sync External Store</h5>
+      <h5 className="mb-3">Use Deferred Value</h5>
       <form>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
@@ -20,8 +22,8 @@ const UseSyncExternalStorePage = () => {
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            value={profile.name}
-            onChange={(e) => profileStore.changeName(e.target.value)}
+            value={deferredName}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div class="mb-3">
@@ -32,8 +34,8 @@ const UseSyncExternalStorePage = () => {
             type="text"
             class="form-control"
             id="exampleInputPassword1"
-            value={profile.job}
-            onChange={(e) => profileStore.changeJob(e.target.value)}
+            value={deferredJob}
+            onChange={(e) => setJob(e.target.value)}
           />
         </div>
         <div class="mb-3">
@@ -41,18 +43,20 @@ const UseSyncExternalStorePage = () => {
             Salary
           </label>
           <input
-            type="text"
+            type="number"
             class="form-control"
             id="exampleInputPassword1"
-            value={profile.salary}
-            onChange={(e) => profileStore.changeSalary(e.target.value)}
+            value={deferredSalary}
+            onChange={(e) => setSalary(e.target.value)}
           />
         </div>
         <button
           type="button"
           class="btn btn-primary"
           onClick={() => {
-            console.log(profile);
+            console.log(
+              `name : ${deferredName}, job: ${deferredJob}, salary: $${deferredSalary}`
+            );
           }}
         >
           Submit
@@ -60,12 +64,12 @@ const UseSyncExternalStorePage = () => {
       </form>
 
       <div className="mt-5">
-        <div>Full Name : {profile.name}</div>
-        <div>Job : {profile.job}</div>
-        <div>Salary : ${profile.salary}</div>
+        <div>Full Name : {deferredName}</div>
+        <div>Job : {deferredJob}</div>
+        <div>Salary : ${deferredSalary}</div>
       </div>
     </div>
   );
 };
 
-export default UseSyncExternalStorePage;
+export default UseDeferredValuePage;

@@ -9,6 +9,10 @@ import {
   UseLayoutEffectPage,
   UseDebugValuePage,
   UseImperativeHandlePage,
+  UseDeferredValuePage,
+  UseIdPage,
+  UseSyncExternalStorePage,
+  UseTransitionPage,
 } from "./Hooks";
 
 export const hooksData = [
@@ -61,5 +65,25 @@ export const hooksData = [
     id: 10,
     name: "Use Imperative Handle",
     page: <UseImperativeHandlePage />,
+  },
+  {
+    id: 11,
+    name: "Use Deferred Value",
+    page: <UseDeferredValuePage />,
+  },
+  {
+    id: 12,
+    name: "Use Id",
+    page: <UseIdPage />,
+  },
+  {
+    id: 13,
+    name: "Use Sync External Store",
+    page: <UseSyncExternalStorePage />,
+  },
+  {
+    id: 14,
+    name: "Use Transition",
+    page: <UseTransitionPage />,
   },
 ];

@@ -12,7 +12,7 @@ function App() {
           return (
             <li class="nav-item" role="presentation">
               <button
-                class={`nav-link ${hook.id == current ? "active" : ""}`}
+                class={`nav-link ${hook.id === current ? "active" : ""}`}
                 onClick={() => setCurrent(hook.id)}
               >
                 {hook.name}
@@ -24,7 +24,7 @@ function App() {
       <div class="tab-content" id="myTabContent">
         {hooksData.map((hook) => {
           return (
-            hook.id == current && (
+            hook.id === current && (
               <div
                 class="tab-pane fade show active"
                 id="home"
